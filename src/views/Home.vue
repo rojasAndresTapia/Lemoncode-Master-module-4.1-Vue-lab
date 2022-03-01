@@ -1,14 +1,17 @@
 <template>
-  <Nav />
-  <router-view />
+  <div class="home">
+    <MemberList></MemberList>
+  </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue';
-import Nav from '@/components/Nav.vue';
+import MemberList from '@/components/MemberList.vue';
+
 export default defineComponent({
+  name: 'Home',
   components: {
-    Nav,
+    MemberList,
   },
 });
 </script>
