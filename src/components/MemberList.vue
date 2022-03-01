@@ -1,11 +1,11 @@
 <template>
   <div>
-    <input v-model="value" id="value" placeholder="edit me" />
-    <button @click="handleInput">Search</button>
+    <input class="inputSearch" v-model="value" id="value" />
+    <button class="searchButton" @click="handleInput">Search</button>
   </div>
   <table class="table">
     <thead>
-      <tr class="tableRow">
+      <tr class="tableHead">
         <th>Avatar</th>
         <th>Id</th>
         <th>Name</th>
@@ -52,7 +52,6 @@ export default defineComponent({
   methods: {
     handleInput: async function () {
       this.memberList = await getMembers(this.value);
-      console.log(this.memberList);
       return this.memberList;
     },
   },
@@ -63,12 +62,31 @@ export default defineComponent({
 </script>
 
 <style>
+.inputSearch {
+  padding: 10px;
+  margin: 10px;
+}
+.searchButton {
+  padding: 10px 20px 10px 20px;
+  margin: 10px;
+}
 .table {
+  margin-top: 50px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 .tableRow {
+  border: 1px solid grey;
+  margin: 10px;
+  padding: 10px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+.tableHead {
   display: flex;
   flex-direction: row;
   justify-content: space-around;

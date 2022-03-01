@@ -1,12 +1,14 @@
 <template>
-  <div class="profileImg">
-    <img class="profileImg" :src="`${member.avatar_url}`" />
-  </div>
-  <div v-if="member">
-    <h1>{{ member.login }}</h1>
-    <h2>{{ member.followers_url }}</h2>
-    <h2>{{ member.type }}</h2>
-    <h2>{{ memberList }}</h2>
+  <nav-title><h1 class="title">Member Detail</h1></nav-title>
+  <div class="container">
+    <div class="profileImg">
+      <img class="profileImg" :src="`${member.avatar_url}`" />
+    </div>
+    <div v-if="member">
+      <h1>{{ member.login }}</h1>
+      <p>{{ member.followers_url }}</p>
+      <p>{{ member.type }}</p>
+    </div>
   </div>
 </template>
 
@@ -15,9 +17,13 @@ import { defineComponent } from 'vue';
 import { Member } from '@/types';
 import { RouteLocation } from 'vue-router';
 import { memberService } from '@/services/memberService';
+import Nav from '@/components/Nav.vue';
 
 export default defineComponent({
-  components: {},
+  components: {
+    // eslint-disable-next-line vue/no-unused-components
+    'nav-title': Nav,
+  },
   data() {
     return {
       member: {} as Member,
@@ -25,17 +31,29 @@ export default defineComponent({
   },
   computed: {
     id() {
-      console.log('this1', this.$route);
       return String((this.$route as RouteLocation).params.id);
     },
   },
   async created() {
     memberService.getMember(this.id).then((member: Member | undefined) => {
       if (member) {
-        console.log('this2', this);
         this.member = member;
       }
     });
   },
 });
 </script>
+<style>
+.title {
+  text-align: center;
+  padding-top: 2%;
+}
+.container {
+  padding: 10px;
+  border-radius: 8px;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+</style>
