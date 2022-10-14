@@ -25,12 +25,18 @@ export const memberService = {
     ).then((response) => response.data);
     return members;
   },
-  async getMember(id: string): Promise<Member | undefined> {
+};
+
+export const userService = {
+  async getUser(id: string): Promise<Member | undefined> {
+    const member = await axios(`https://api.github.com/users/${id}`, {
+      headers: {
+        Accept: 'application/json',
+      },
+    }).then((response) => response.data);
     if (!id) {
       throw new Error('id is required');
     }
-    return this.get().then((memberList) =>
-      memberList.find((member) => member.id == id)
-    );
+    return member;
   },
 };

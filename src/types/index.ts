@@ -1,5 +1,6 @@
 export interface Member {
   login: string;
+  company: string;
   id: string;
   avatar_url: string;
   url: string;

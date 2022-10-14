@@ -14,7 +14,7 @@
     <tbody>
       <tr class="tableRow" v-for="member in memberList" :key="member.id">
         <td>
-          <router-link :to="`/detail/${member.id}`">
+          <router-link :to="`/detail/${member.login}`">
             <img class="profileImg" :src="`${member.avatar_url}`" />
           </router-link>
         </td>
@@ -22,7 +22,7 @@
           <span>{{ member.id }}</span>
         </td>
         <td>
-          <router-link :to="`/detail/${member.id}`">
+          <router-link :to="`/detail/${member.login}`">
             <span>{{ member.login }}</span>
           </router-link>
         </td>

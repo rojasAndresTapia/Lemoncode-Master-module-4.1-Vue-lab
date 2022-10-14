@@ -6,8 +6,8 @@
     </div>
     <div v-if="member">
       <h1>{{ member.login }}</h1>
-      <p>{{ member.followers_url }}</p>
-      <p>{{ member.type }}</p>
+      <p>{{ member.company }}</p>
+      <p>{{ member.html_url }}</p>
     </div>
   </div>
 </template>
@@ -16,7 +16,7 @@
 import { defineComponent } from 'vue';
 import { Member } from '@/types';
 import { RouteLocation } from 'vue-router';
-import { memberService } from '@/services/memberService';
+import { userService } from '@/services/memberService';
 import Nav from '@/components/Nav.vue';
 
 export default defineComponent({
@@ -35,7 +35,7 @@ export default defineComponent({
     },
   },
   async created() {
-    memberService.getMember(this.id).then((member: Member | undefined) => {
+    userService.getUser(this.id).then((member: Member | undefined) => {
       if (member) {
         this.member = member;
       }
